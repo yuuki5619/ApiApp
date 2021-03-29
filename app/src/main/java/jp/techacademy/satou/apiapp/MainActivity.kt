@@ -49,6 +49,13 @@ class MainActivity : AppCompatActivity(), FragmentCallback {
         showConfirmDeleteFavoriteDialog(id)
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        (viewPagerAdapter.fragments[VIEW_PAGER_POSITION_API] as ApiFragment).updateView()
+        (viewPagerAdapter.fragments[VIEW_PAGER_POSITION_FAVORITE] as FavoriteFragment).updateData()
+
+    }
+
     private fun showConfirmDeleteFavoriteDialog(id: String) {
         AlertDialog.Builder(this)
                 .setTitle(R.string.delete_favorite_dialog_title)
@@ -61,11 +68,14 @@ class MainActivity : AppCompatActivity(), FragmentCallback {
                 .show()
     }
 
-    open fun deleteFavorite(id: String) {
+     fun deleteFavorite(id: String) {
         FavoriteShop.delete(id)
         (viewPagerAdapter.fragments[VIEW_PAGER_POSITION_API] as ApiFragment).updateView()
         (viewPagerAdapter.fragments[VIEW_PAGER_POSITION_FAVORITE] as FavoriteFragment).updateData()
     }
+
+
+
 
     companion object {
         private const val VIEW_PAGER_POSITION_API = 0

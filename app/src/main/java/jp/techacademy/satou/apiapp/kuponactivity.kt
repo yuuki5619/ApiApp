@@ -2,18 +2,21 @@ package jp.techacademy.satou.apiapp
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
 import kotlinx.android.synthetic.main.activity_web_view.*
+import kotlinx.android.synthetic.main.recycler_favorite.*
 
 
 class kuponactivity : AppCompatActivity() {
     var onClickAddFavorite: ((Shop) -> Unit)? = null
     var onClickDeleteFavorite: ((Shop) -> Unit)? = null
     private var fragmentCallback : FragmentCallback? = null
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,10 +34,6 @@ class kuponactivity : AppCompatActivity() {
                     .setMessage(R.string.delete_favorite_dialog_message)
                     .setPositiveButton(android.R.string.ok) { _, _ ->
                     FavoriteShop.delete(keyid)
-                        onClickDeleteFavorite = {
-                            fragmentCallback?.onDeleteFavorite(keyid)
-
-                        }
 
 
                     }
