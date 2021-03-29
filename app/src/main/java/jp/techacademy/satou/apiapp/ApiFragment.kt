@@ -50,8 +50,8 @@ open class ApiFragment: Fragment() {
                 fragmentCallback?.onDeleteFavorite(it.id)
             }
             // Itemをクリックしたとき
-            onClickItem = { uri,id,name,logoImage ->
-                fragmentCallback?.onClickItem(uri,id,name,logoImage)
+            onClickItem = { uri,id,name,logoImage,adress ->
+                fragmentCallback?.onClickItem(uri,id,name,logoImage,adress)
             }
         }
         // RecyclerViewの初期化

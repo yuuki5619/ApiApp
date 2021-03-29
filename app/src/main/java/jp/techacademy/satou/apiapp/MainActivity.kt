@@ -30,8 +30,8 @@ class MainActivity : AppCompatActivity(), FragmentCallback {
         }.attach()
     }
 
-    override fun onClickItem(url: String,id: String,name: String,imageUrl: String) {
-        kuponactivity.start(this,url,id,name,imageUrl)
+    override fun onClickItem(url: String,id: String,name: String,imageUrl: String,adress: String) {
+        kuponactivity.start(this,url,id,name,imageUrl,adress)
     }
 
     override fun onAddFavorite(shop: Shop) { // Favoriteに追加するときのメソッド(Fragment -> Activity へ通知する)

@@ -26,6 +26,7 @@ class kuponactivity : AppCompatActivity() {
         val keyid = intent.getStringExtra(kuponactivity.KEY_ID)
         val keyname = intent.getStringExtra(kuponactivity.KEY_NAME)
         val keylogourl = intent.getStringExtra(kuponactivity.KEY_LOGURL)
+        val keyadress = intent.getStringExtra(KEY_ADRESS)
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
             if (keyid?.let { FavoriteShop.findBy(it) } != null){
@@ -50,6 +51,7 @@ class kuponactivity : AppCompatActivity() {
                             name = keyname!!
                             imageUrl = keylogourl!!
                             url = keyurl.toString()!!
+                            adress = keyadress.toString()!!
 
 
                         })
@@ -71,10 +73,11 @@ class kuponactivity : AppCompatActivity() {
         private const val KEY_ID = "key_id"
         private const val KEY_NAME= "key_name"
         private const val KEY_LOGURL = "key_logourl"
-        fun start(activity: Activity, url: String, id: String,name: String,logoImage: String) {
+        private const val KEY_ADRESS = "key_adress"
+        fun start(activity: Activity, url: String, id: String,name: String,logoImage: String,adress: String) {
             activity.startActivity(
                 Intent(activity, kuponactivity::class.java).putExtra(KEY_URL, url).putExtra(
-                    KEY_ID, id).putExtra(KEY_NAME,name).putExtra(KEY_LOGURL,logoImage)
+                    KEY_ID, id).putExtra(KEY_NAME,name).putExtra(KEY_LOGURL,logoImage).putExtra(KEY_ADRESS,adress)
             )
 
         }
