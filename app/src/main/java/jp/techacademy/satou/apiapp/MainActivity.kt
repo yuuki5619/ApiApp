@@ -30,8 +30,8 @@ class MainActivity : AppCompatActivity(), FragmentCallback {
         }.attach()
     }
 
-    override fun onClickItem(url: String) {
-        WebViewActivity.start(this, url)
+    override fun onClickItem(url: String,id: String,name: String,imageUrl: String) {
+        kuponactivity.start(this,url,id,name,imageUrl)
     }
 
     override fun onAddFavorite(shop: Shop) { // Favoriteに追加するときのメソッド(Fragment -> Activity へ通知する)
@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity(), FragmentCallback {
             id = shop.id
             name = shop.name
             imageUrl = shop.logoImage
+            adress = shop.address
             url = if (shop.couponUrls.sp.isNotEmpty()) shop.couponUrls.sp else shop.couponUrls.pc
         })
         (viewPagerAdapter.fragments[VIEW_PAGER_POSITION_FAVORITE] as FavoriteFragment).updateData()
@@ -60,7 +61,7 @@ class MainActivity : AppCompatActivity(), FragmentCallback {
                 .show()
     }
 
-    private fun deleteFavorite(id: String) {
+    open fun deleteFavorite(id: String) {
         FavoriteShop.delete(id)
         (viewPagerAdapter.fragments[VIEW_PAGER_POSITION_API] as ApiFragment).updateView()
         (viewPagerAdapter.fragments[VIEW_PAGER_POSITION_FAVORITE] as FavoriteFragment).updateData()

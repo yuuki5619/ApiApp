@@ -12,7 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ApiApp">
-        <activity android:name=".WebViewActivity"></activity>
+        <activity
+            android:name=".kuponactivity"
+            android:label="@string/title_activity_kuponactivity"
+            android:theme="@style/Theme.ApiApp.NoActionBar"></activity>
+        <activity android:name=".WebViewActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

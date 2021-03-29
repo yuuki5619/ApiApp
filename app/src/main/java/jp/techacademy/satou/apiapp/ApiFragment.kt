@@ -15,7 +15,7 @@ import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import java.io.IOException
 
-class ApiFragment: Fragment() {
+open class ApiFragment: Fragment() {
 
     private val apiAdapter by lazy { ApiAdapter(requireContext()) }
     private val handler = Handler(Looper.getMainLooper())
@@ -50,8 +50,8 @@ class ApiFragment: Fragment() {
                 fragmentCallback?.onDeleteFavorite(it.id)
             }
             // Itemをクリックしたとき
-            onClickItem = {
-                fragmentCallback?.onClickItem(it)
+            onClickItem = { uri,id,name,logoImage ->
+                fragmentCallback?.onClickItem(uri,id,name,logoImage)
             }
         }
         // RecyclerViewの初期化
@@ -83,7 +83,7 @@ class ApiFragment: Fragment() {
         updateData()
     }
 
-    fun updateView() { // お気に入りが削除されたときの処理（Activityからコールされる）
+     open fun updateView() { // お気に入りが削除されたときの処理（Activityからコールされる）
         recyclerview.adapter?.notifyDataSetChanged() // RecyclerViewのAdapterに対して再描画のリクエストをする
     }
 
@@ -147,6 +147,8 @@ class ApiFragment: Fragment() {
     }
 
     companion object {
+
+
         private const val COUNT = 20 // 1回のAPIで取得する件数
     }
 }

@@ -7,16 +7,20 @@ import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_web_view.*
 
 class WebViewActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+    open override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_web_view)
+        setContentView(R.layout.activity_kuponactivity)
         webView.loadUrl(intent.getStringExtra(KEY_URL).toString())
+        intent.getStringExtra(KEY_ID)
+
     }
 
     companion object{
-        private const val KEY_URL = "key_url"
-        fun start(activity: Activity,url: String){
-            activity.startActivity(Intent(activity,WebViewActivity::class.java).putExtra(KEY_URL,url))
+        const val KEY_URL = "key_url"
+        const val KEY_ID = "key_id"
+        fun start(activity: Activity,url: String,id: String){
+            activity.startActivity(Intent(activity,WebViewActivity::class.java).putExtra(KEY_URL,url).putExtra(
+                KEY_ID,id))
 
         }
     }

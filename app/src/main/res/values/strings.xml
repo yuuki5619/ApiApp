@@ -13,5 +13,15 @@
     <string name="delete_favorite_dialog_title">お気に入りの削除</string>
     <string name="delete_favorite_dialog_message">お気に入りを削除しますか？</string>
     <string name="enpty_favorite">お気に入りはまだ登録されていません。</string>
+    <string name="title_activity_kuponactivity">kuponactivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+   <!--webからお気に入り登録-->
+    <string name="add_favorite_dialog_title">お気に入りの登録</string>
+    <string name="add_favorite_dialog_message">お気に入り登録しますか？</string>
 
 </resources>

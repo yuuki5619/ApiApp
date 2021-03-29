@@ -22,7 +22,7 @@ class ApiAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVie
     var onClickDeleteFavorite: ((Shop) -> Unit)? = null
 
     // Itemを押したときのメソッド
-    var onClickItem: ((String) -> Unit)? = null
+    var onClickItem: ((String,String,String,String) -> Unit)? = null
 
     fun refresh(list: List<Shop>) {
         update(list, false)
@@ -52,12 +52,14 @@ class ApiAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVie
     class ApiItemViewHolder(view: View): RecyclerView.ViewHolder(view) {
         // レイアウトファイルからidがrootViewのConstraintLayoutオブジェクトを取得し、代入
         val rootView : ConstraintLayout = view.findViewById(R.id.rootView)
-        // レイアウトファイルからidがnameTextViewのCTextViewオブジェクトを取得し、代入
+        // レイアウトファイルからidがnameTextViewのTextViewオブジェクトを取得し、代入
         val nameTextView: TextView = view.findViewById(R.id.nameTextView)
         // レイアウトファイルからidがimageViewのImageViewオブジェクトを取得し、代入
         val imageView: ImageView = view.findViewById(R.id.imageView)
         // レイアウトファイルからidがfavoriteImageViewのImageViewオブジェクトを取得し、代入
         val favoriteImageView: ImageView = view.findViewById(R.id.favoriteImageView)
+        // レイアウトファイルからidがzyuusyoTextViewのTextViewオブジェクトを取得し、代入
+        val adressTextView: TextView = view.findViewById(R.id.adressTextView)
     }
 
     override fun getItemCount(): Int {
@@ -85,11 +87,12 @@ class ApiAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVie
                 setBackgroundColor(ContextCompat.getColor(context,
                         if (position % 2 == 0) android.R.color.white else android.R.color.darker_gray))
                 setOnClickListener {
-                    onClickItem?.invoke(if (data.couponUrls.sp.isNotEmpty()) data.couponUrls.sp else data.couponUrls.pc)
+                    onClickItem?.invoke(if (data.couponUrls.sp.isNotEmpty()) data.couponUrls.sp else data.couponUrls.pc,data.id,data.name,data.logoImage)
                 }
             }
             // nameTextViewのtextプロパティに代入されたオブジェクトのnameプロパティを代入
             nameTextView.text = data.name
+            adressTextView.text = data.address
             // Picassoライブラリを使い、imageViewにdata.logoImageのurlの画像を読み込ませる
             Picasso.get().load(data.logoImage).into(imageView)
             // 白抜きの星マークの画像を指定
