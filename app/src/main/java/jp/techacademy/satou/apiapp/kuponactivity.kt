@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
+import kotlinx.android.synthetic.main.activity_kuponactivity.*
 import kotlinx.android.synthetic.main.activity_web_view.*
 import kotlinx.android.synthetic.main.recycler_favorite.*
 
@@ -29,6 +30,13 @@ class kuponactivity : AppCompatActivity() {
         val keylogourl = intent.getStringExtra(kuponactivity.KEY_LOGURL)
         val keyadress = intent.getStringExtra(KEY_ADRESS)
 
+        if (keyid?.let { FavoriteShop.findBy(it) } != null){
+            fab.setImageResource(R.drawable.ic_star)
+        }else{
+            fab.setImageResource(R.drawable.ic_star_border)
+        }
+
+
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
             if (keyid?.let { FavoriteShop.findBy(it) } != null){
                 AlertDialog.Builder(this)
@@ -37,6 +45,8 @@ class kuponactivity : AppCompatActivity() {
                     .setPositiveButton(android.R.string.ok) { _, _ ->
                     FavoriteShop.delete(keyid)
                         Toast.makeText(applicationContext,"お気に入りを削除しました。",Toast.LENGTH_SHORT).show()
+                        fab.setImageResource(R.drawable.ic_star_border)
+
 
 
                     }
@@ -55,6 +65,7 @@ class kuponactivity : AppCompatActivity() {
                             url = keyurl.toString()!!
                             adress = keyadress.toString()!!
                             Toast.makeText(applicationContext,"お気に入りを登録しました",Toast.LENGTH_SHORT).show()
+                            fab.setImageResource(R.drawable.ic_star)
 
 
                         })
