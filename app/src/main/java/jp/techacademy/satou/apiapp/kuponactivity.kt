@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
@@ -35,6 +36,7 @@ class kuponactivity : AppCompatActivity() {
                     .setMessage(R.string.delete_favorite_dialog_message)
                     .setPositiveButton(android.R.string.ok) { _, _ ->
                     FavoriteShop.delete(keyid)
+                        Toast.makeText(applicationContext,"お気に入りを削除しました。",Toast.LENGTH_SHORT).show()
 
 
                     }
@@ -52,6 +54,7 @@ class kuponactivity : AppCompatActivity() {
                             imageUrl = keylogourl!!
                             url = keyurl.toString()!!
                             adress = keyadress.toString()!!
+                            Toast.makeText(applicationContext,"お気に入りを登録しました",Toast.LENGTH_SHORT).show()
 
 
                         })

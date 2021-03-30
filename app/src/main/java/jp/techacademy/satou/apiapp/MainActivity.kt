@@ -49,12 +49,11 @@ class MainActivity : AppCompatActivity(), FragmentCallback {
         showConfirmDeleteFavoriteDialog(id)
     }
 
-    override fun onRestart() {
-        super.onRestart()
-        (viewPagerAdapter.fragments[VIEW_PAGER_POSITION_API] as ApiFragment).updateView()
-        (viewPagerAdapter.fragments[VIEW_PAGER_POSITION_FAVORITE] as FavoriteFragment).updateData()
-
-    }
+    //override fun onResume() {
+        //super.onResume()
+        //(viewPagerAdapter.fragments[VIEW_PAGER_POSITION_API] as ApiFragment).updateView()
+        //(viewPagerAdapter.fragments[VIEW_PAGER_POSITION_FAVORITE] as FavoriteFragment).updateData()
+    //}
 
     private fun showConfirmDeleteFavoriteDialog(id: String) {
         AlertDialog.Builder(this)

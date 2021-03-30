@@ -87,7 +87,7 @@ open class ApiFragment: Fragment() {
         recyclerview.adapter?.notifyDataSetChanged() // RecyclerViewのAdapterに対して再描画のリクエストをする
     }
 
-    private fun updateData(isAdd: Boolean = false) {
+     fun updateData(isAdd: Boolean = false) {
         if (isLoading) {
             return
         } else {
@@ -144,6 +144,11 @@ open class ApiFragment: Fragment() {
             apiAdapter.refresh(list)
         }
         swipeRefreshLayout.isRefreshing = false // SwipeRefreshLayoutのくるくるを消す
+    }
+
+    override fun onResume() {
+        super.onResume()
+        recyclerview.adapter?.notifyDataSetChanged() // RecyclerViewのAdapterに対して再描画のリクエストをする
     }
 
     companion object {
